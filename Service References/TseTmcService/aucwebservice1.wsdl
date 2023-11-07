@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://localhost:8855/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://localhost:8855/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://localhost:8855/">
+      <s:element name="MessageList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UsrNam" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UsrPwd" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Idn" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MessageListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MessageListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChkUsrLogin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UsrNam" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UsrPwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChkUsrLoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChkUsrLoginResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuctionConfirmByCDS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UsrNam" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UsrPwd" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AuctionIdn" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Confirm" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="CDSDesc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuctionConfirmByCDSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AuctionConfirmByCDSResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="MessageListSoapIn">
+    <wsdl:part name="parameters" element="tns:MessageList" />
+  </wsdl:message>
+  <wsdl:message name="MessageListSoapOut">
+    <wsdl:part name="parameters" element="tns:MessageListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChkUsrLoginSoapIn">
+    <wsdl:part name="parameters" element="tns:ChkUsrLogin" />
+  </wsdl:message>
+  <wsdl:message name="ChkUsrLoginSoapOut">
+    <wsdl:part name="parameters" element="tns:ChkUsrLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuctionConfirmByCDSSoapIn">
+    <wsdl:part name="parameters" element="tns:AuctionConfirmByCDS" />
+  </wsdl:message>
+  <wsdl:message name="AuctionConfirmByCDSSoapOut">
+    <wsdl:part name="parameters" element="tns:AuctionConfirmByCDSResponse" />
+  </wsdl:message>
+  <wsdl:portType name="AucWebServiceSoap">
+    <wsdl:operation name="MessageList">
+      <wsdl:input message="tns:MessageListSoapIn" />
+      <wsdl:output message="tns:MessageListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChkUsrLogin">
+      <wsdl:input message="tns:ChkUsrLoginSoapIn" />
+      <wsdl:output message="tns:ChkUsrLoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuctionConfirmByCDS">
+      <wsdl:input message="tns:AuctionConfirmByCDSSoapIn" />
+      <wsdl:output message="tns:AuctionConfirmByCDSSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AucWebServiceSoap" type="tns:AucWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="MessageList">
+      <soap:operation soapAction="http://localhost:8855/MessageList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChkUsrLogin">
+      <soap:operation soapAction="http://localhost:8855/ChkUsrLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuctionConfirmByCDS">
+      <soap:operation soapAction="http://localhost:8855/AuctionConfirmByCDS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AucWebServiceSoap12" type="tns:AucWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="MessageList">
+      <soap12:operation soapAction="http://localhost:8855/MessageList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChkUsrLogin">
+      <soap12:operation soapAction="http://localhost:8855/ChkUsrLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuctionConfirmByCDS">
+      <soap12:operation soapAction="http://localhost:8855/AuctionConfirmByCDS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AucWebService">
+    <wsdl:port name="AucWebServiceSoap" binding="tns:AucWebServiceSoap">
+      <soap:address location="http://192.168.50.68/webservice/aucwebservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AucWebServiceSoap12" binding="tns:AucWebServiceSoap12">
+      <soap12:address location="http://192.168.50.68/webservice/aucwebservice.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,3 @@
+D:\Projects\TseTmc\TseTmc\bin\Release\TseTmc.exe.config
+D:\Projects\TseTmc\TseTmc\obj\Release\TseTmc.exe
+D:\Projects\TseTmc\TseTmc\obj\Release\TseTmc.pdb
